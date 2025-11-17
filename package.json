@@ -1,0 +1,32 @@
+{
+  "name": "perplexity-cli",
+  "version": "1.0.0",
+  "description": "A CLI tool that searches the web and generates AI-powered answers with sources",
+  "main": "index.js",
+  "type": "module",
+  "bin": {
+    "perplexity-cli": "./index.js"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "dev": "genkit start -- node index.js"
+  },
+  "keywords": [
+    "cli",
+    "ai",
+    "search",
+    "perplexity",
+    "genkit",
+    "tavily"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "genkit": "^1.22.0",
+    "@genkit-ai/googleai": "^1.22.0",
+    "@tavily/core": "^0.5.12",
+    "chalk": "^5.6.2",
+    "dotenv": "^17.2.3",
+    "ora": "^9.0.0"
+  }
+}
