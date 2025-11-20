@@ -31,7 +31,7 @@ async function startInteractive() {
     });
     
     // Create chat agent with search capabilities
-    const chat = createChatAgent(ai, client,  googleAI.model('gemini-2.5-pro'));
+    const chat = createChatAgent(ai, client,  googleAI.model('gemini-3-pro-preview'));
     
     const rl = readline.createInterface({
       input: process.stdin,

@@ -1,11 +1,11 @@
 # Perplexity CLI
 
-An interactive command-line chat tool that searches the web and generates AI-powered answers with sources, similar to Perplexity AI. Built with Node.js, Google Genkit (Gemini 2.5 Pro), and Tavily Search API.
+An interactive command-line chat tool that searches the web and generates AI-powered answers with sources, similar to Perplexity AI. Built with Node.js, Google Genkit (Gemini 3 Pro), and Tavily Search API.
 
 ## Features
 
 - 🔍 Web search powered by Tavily API
-- 🤖 AI-generated comprehensive answers using Google Genkit with Gemini 2.5 Pro
+- 🤖 AI-generated comprehensive answers using Google Genkit with Gemini 3 Pro
 - 💬 Interactive chat mode with persistent conversation history
 - 🛠️ AI agents with tool-calling capabilities
 - 📚 Cited sources with URLs
@@ -73,7 +73,7 @@ This starts an interactive chat session where you can:
 2. **Query Processing**: When you ask a question, the AI agent analyzes if it needs current web information
 3. **Tool Calling**: If needed, the AI agent calls the web search tool using Tavily's API
 4. **Search**: Tavily searches the web for relevant, up-to-date information
-5. **Generate**: Google Genkit with Gemini 2.5 Pro analyzes the search results and conversation context to generate a comprehensive answer
+5. **Generate**: Google Genkit with Gemini 3 Pro analyzes the search results and conversation context to generate a comprehensive answer
 6. **Display**: The answer is displayed in the terminal with proper formatting
 
 ## Project Structure
@@ -139,7 +139,7 @@ in multiple states simultaneously...
 
 - [Node.js](https://nodejs.org/) - JavaScript runtime
 - [Google Genkit](https://firebase.google.com/docs/genkit) - AI framework for building AI-powered apps with tool-calling capabilities
-- [Gemini 2.5 Pro](https://ai.google.dev/) - Google's advanced AI model
+- [Gemini 3 Pro](https://ai.google.dev/) - Google's advanced AI model
 - [Tavily API](https://tavily.com) - Web search API optimized for AI applications
 - [Chalk](https://github.com/chalk/chalk) - Terminal styling
 - [Ora](https://github.com/sindresorhus/ora) - Terminal spinners
