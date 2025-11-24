@@ -12,7 +12,8 @@ export function createSearchTool(ai: any, client: TavilyClient) {
   return ai.defineTool(
     {
       name: 'searchWeb',
-      description: 'Search the web for current information to answer user queries. Use this when you need up-to-date or factual information.',
+      description:
+        'Search the web for current information to answer user queries. Use this when you need up-to-date or factual information.',
       inputSchema: z.object({
         query: z.string().describe('The search query to look up'),
       }),
@@ -27,7 +28,7 @@ export function createSearchTool(ai: any, client: TavilyClient) {
           return `[${index + 1}] ${result.title}\nURL: ${result.url}\nContent: ${result.content}\n`;
         })
         .join('\n');
-      
+
       return formattedResults;
     }
   );
@@ -70,7 +71,7 @@ Instructions:
 
 Answer:`,
   });
-  
+
   // Return chat session with in-memory persistence
   return ai.chat(searchPrompt);
 }

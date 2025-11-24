@@ -20,7 +20,7 @@ export async function searchWeb(
       includeRawContent: false,
       includeImages: false,
     });
-    
+
     return response;
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : 'Unknown error';
