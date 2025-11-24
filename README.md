@@ -22,21 +22,25 @@ An interactive command-line chat tool that searches the web and generates AI-pow
 ## Installation
 
 1. Clone the repository or navigate to the project folder:
+
 ```bash
 cd project
 ```
 
 2. Install dependencies:
+
 ```bash
 npm install
 ```
 
 3. Set up environment variables by creating a `.env` file:
+
 ```bash
 touch .env
 ```
 
 4. Add your API keys to the `.env` file:
+
 ```
 TAVILY_API_KEY=your_tavily_api_key_here
 GOOGLE_API_KEY=your_google_api_key_here
@@ -45,28 +49,33 @@ GOOGLE_API_KEY=your_google_api_key_here
 ## Usage
 
 ### Development Mode (with TypeScript):
+
 ```bash
 npm run dev
 ```
 
 ### Production Mode:
+
 ```bash
 npm start
 ```
 
 Or build and run separately:
+
 ```bash
 npm run build
 node dist/index.js
 ```
 
 This starts an interactive chat session where you can:
+
 - Ask multiple questions in sequence
 - Maintain conversation context across questions
 - Type `exit` or `quit` to leave
 - Press `Ctrl+C` to exit
 
 ### Example Session:
+
 ```
 💬 Ask a question (or type "exit" to quit): What is quantum computing?
 ✓ Response generated
@@ -116,9 +125,9 @@ Commands: exit, quit, or press Ctrl+C to leave
 💬 Ask a question (or type "exit" to quit): What is quantum computing?
 ✓ Response generated
 
-Quantum computing is a revolutionary approach to computation that leverages 
-the principles of quantum mechanics. Unlike classical computers that use bits 
-(0s and 1s), quantum computers use quantum bits or "qubits" that can exist 
+Quantum computing is a revolutionary approach to computation that leverages
+the principles of quantum mechanics. Unlike classical computers that use bits
+(0s and 1s), quantum computers use quantum bits or "qubits" that can exist
 in multiple states simultaneously...
 
 [Sources and citations included in the response]
@@ -129,11 +138,13 @@ in multiple states simultaneously...
 ## API Keys
 
 ### Tavily API
+
 - Sign up at [tavily.com](https://tavily.com)
 - Get your API key from the dashboard
 - Free tier includes 1,000 searches per month
 
 ### Google AI API
+
 - Visit [Google AI Studio](https://aistudio.google.com/app/apikey)
 - Create a new API key
 - Free tier available with rate limits
@@ -141,15 +152,19 @@ in multiple states simultaneously...
 ## Troubleshooting
 
 **Error: TAVILY_API_KEY is not set**
+
 - Make sure you've created a `.env` file with your Tavily API key
 
 **Error: GOOGLE_API_KEY is not set**
+
 - Make sure you've added your Google AI API key to the `.env` file
 
 **Module not found errors**
+
 - Run `npm install` to install all dependencies
 
 **TypeScript compilation errors**
+
 - Run `npm run build` to check for type errors
 - Check `tsconfig.json` settings if needed
 

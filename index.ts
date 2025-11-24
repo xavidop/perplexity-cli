@@ -3,6 +3,8 @@
 import chalk from 'chalk';
 import ora, { type Ora } from 'ora';
 import dotenv from 'dotenv';
+import process from 'process';
+import console from 'console';
 import readline from 'readline';
 import { createChatAgent } from './src/agent.js';
 import { genkit } from 'genkit/beta';

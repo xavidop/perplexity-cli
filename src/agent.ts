@@ -1,6 +1,8 @@
 import { z } from 'zod';
 import { searchWeb } from './search.js';
 import type { TavilyClient } from '@tavily/core';
+import { GenkitBeta, ModelReference } from 'genkit/beta';
+import { GeminiConfigSchema } from '@genkit-ai/googleai/lib/gemini.js';
 
 /**
  * Create a search tool definition for the chat agent
@@ -8,7 +10,7 @@ import type { TavilyClient } from '@tavily/core';
  * @param client - Tavily client instance
  * @returns Tool definition
  */
-export function createSearchTool(ai: any, client: TavilyClient) {
+export function createSearchTool(ai: GenkitBeta, client: TavilyClient) {
   return ai.defineTool(
     {
       name: 'searchWeb',
@@ -41,14 +43,17 @@ export function createSearchTool(ai: any, client: TavilyClient) {
  * @param model - AI model to use for the chat agent
  * @returns Chat instance with search capabilities
  */
-export function createChatAgent(ai: any, client: TavilyClient, model: any) {
+export function createChatAgent(
+  ai: GenkitBeta,
+  client: TavilyClient,
+  model: ModelReference<typeof GeminiConfigSchema>
+) {
   // Define the search tool
   const searchTool = createSearchTool(ai, client);
 
   const searchPrompt = ai.definePrompt({
     name: 'searchPrompt',
     description: 'Tool that searches the web to answer user queries based on current information.',
-    model: model,
     input: {
       schema: z.object({
         query: z.string().describe('The user query to be answered using web search results'),
@@ -73,5 +78,5 @@ Answer:`,
   });
 
   // Return chat session with in-memory persistence
-  return ai.chat(searchPrompt);
+  return ai.chat(searchPrompt, { model: model });
 }
