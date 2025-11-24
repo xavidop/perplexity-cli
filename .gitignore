@@ -1,3 +1,19 @@
 .env
 node_modules/
 .DS_Store
+
+# TypeScript build outputs
+dist/
+*.tsbuildinfo
+
+# Source maps
+*.js.map
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+.genkit/

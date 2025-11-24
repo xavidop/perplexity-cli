@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import chalk from 'chalk';
-import ora from 'ora';
+import ora, { type Ora } from 'ora';
 import dotenv from 'dotenv';
 import readline from 'readline';
 import { createChatAgent } from './src/agent.js';
@@ -13,7 +13,7 @@ import { tavily } from '@tavily/core';
 dotenv.config();
 
 // Interactive mode with persistent chat sessions
-async function startInteractive() {
+async function startInteractive(): Promise<void> {
   try {
     const TavilyApiKey = process.env.TAVILY_API_KEY;
     if (!TavilyApiKey) {
@@ -31,7 +31,7 @@ async function startInteractive() {
     });
     
     // Create chat agent with search capabilities
-    const chat = createChatAgent(ai, client,  googleAI.model('gemini-3-pro-preview'));
+    const chat = createChatAgent(ai, client, googleAI.model('gemini-3-pro-preview'));
     
     const rl = readline.createInterface({
       input: process.stdin,
@@ -49,7 +49,7 @@ async function startInteractive() {
     
     rl.prompt();
     
-    rl.on('line', async (line) => {
+    rl.on('line', async (line: string) => {
       const query = line.trim();
       
       if (!query) {
@@ -65,7 +65,7 @@ async function startInteractive() {
       // Pause the interface during async operation to prevent issues
       rl.pause();
       
-      let spinner;
+      let spinner: Ora | undefined;
       try {
         spinner = ora('Thinking...').start();
         
@@ -79,7 +79,8 @@ async function startInteractive() {
         
       } catch (error) {
         if (spinner) spinner.fail('Error occurred');
-        console.error(chalk.red('\n❌ Error:'), error.message);
+        const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+        console.error(chalk.red('\n❌ Error:'), errorMessage);
       } finally {
         // Resume and show prompt again to continue the conversation
         rl.resume();
@@ -93,12 +94,13 @@ async function startInteractive() {
     });
     
   } catch (error) {
-    console.error(chalk.red('\n❌ Error:'), error.message);
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    console.error(chalk.red('\n❌ Error:'), errorMessage);
     
-    if (error.message.includes('TAVILY_API_KEY')) {
+    if (error instanceof Error && error.message.includes('TAVILY_API_KEY')) {
       console.log(chalk.yellow('\n💡 Tip: Make sure to set your TAVILY_API_KEY in the .env file'));
     }
-    if (error.message.includes('GOOGLE_API_KEY')) {
+    if (error instanceof Error && error.message.includes('GOOGLE_API_KEY')) {
       console.log(chalk.yellow('\n💡 Tip: Make sure to set your GOOGLE_API_KEY in the .env file'));
     }
     

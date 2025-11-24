@@ -1,13 +1,14 @@
 import { z } from 'zod';
 import { searchWeb } from './search.js';
+import type { TavilyClient } from '@tavily/core';
 
 /**
  * Create a search tool definition for the chat agent
- * @param {Object} ai - Genkit AI instance
- * @param {Object} client - Tavily client instance
- * @returns {Object} Tool definition
+ * @param ai - Genkit AI instance
+ * @param client - Tavily client instance
+ * @returns Tool definition
  */
-export function createSearchTool(ai, client) {
+export function createSearchTool(ai: any, client: TavilyClient) {
   return ai.defineTool(
     {
       name: 'searchWeb',
@@ -17,30 +18,29 @@ export function createSearchTool(ai, client) {
       }),
       outputSchema: z.string().describe('Search results with titles, URLs, and content'),
     },
-      async (input) => {
-        const searchResults = await searchWeb(client, input.query, 5);
-  
-        // Format search results for the model
-        const formattedResults = searchResults.results
-          .map((result, index) => {
-            return `[${index + 1}] ${result.title}\nURL: ${result.url}\nContent: ${result.content}\n`;
-          })
-          .join('\n');
-        
-        return formattedResults;
-      }
+    async (input: { query: string }) => {
+      const searchResults = await searchWeb(client, input.query, 5);
+
+      // Format search results for the model
+      const formattedResults = searchResults.results
+        .map((result, index) => {
+          return `[${index + 1}] ${result.title}\nURL: ${result.url}\nContent: ${result.content}\n`;
+        })
+        .join('\n');
+      
+      return formattedResults;
+    }
   );
 }
 
-
 /**
  * Create a chat agent with web search capabilities
- * @param {Object} ai - Genkit AI instance
- * @param {Object} client - Tavily client instance
- * @param {Object} model - AI model to use for the chat agent
- * @returns {Object} Chat instance with search capabilities
+ * @param ai - Genkit AI instance
+ * @param client - Tavily client instance
+ * @param model - AI model to use for the chat agent
+ * @returns Chat instance with search capabilities
  */
-export function createChatAgent(ai, client, model) {
+export function createChatAgent(ai: any, client: TavilyClient, model: any) {
   // Define the search tool
   const searchTool = createSearchTool(ai, client);
 

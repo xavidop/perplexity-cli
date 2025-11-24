@@ -1,6 +1,6 @@
 # Perplexity CLI
 
-An interactive command-line chat tool that searches the web and generates AI-powered answers with sources, similar to Perplexity AI. Built with Node.js, Google Genkit (Gemini 3 Pro), and Tavily Search API.
+An interactive command-line chat tool that searches the web and generates AI-powered answers with sources, similar to Perplexity AI. Built with TypeScript, Node.js, Google Genkit (Gemini 3 Pro), and Tavily Search API.
 
 ## Features
 
@@ -15,6 +15,7 @@ An interactive command-line chat tool that searches the web and generates AI-pow
 ## Prerequisites
 
 - Node.js 18 or higher
+- TypeScript (installed as dev dependency)
 - Tavily API key (get it from [tavily.com](https://tavily.com))
 - Google AI API key (get it from [Google AI Studio](https://aistudio.google.com/app/apikey))
 
@@ -43,9 +44,20 @@ GOOGLE_API_KEY=your_google_api_key_here
 
 ## Usage
 
-### Interactive Chat Mode:
+### Development Mode (with TypeScript):
 ```bash
-node index.js
+npm run dev
+```
+
+### Production Mode:
+```bash
+npm start
+```
+
+Or build and run separately:
+```bash
+npm run build
+node dist/index.js
 ```
 
 This starts an interactive chat session where you can:
@@ -80,10 +92,12 @@ This starts an interactive chat session where you can:
 
 ```
 project/
-├── index.js              # Main entry point with interactive chat interface
+├── index.ts             # Main entry point with interactive chat interface
 ├── src/
-│   ├── search.js        # Tavily search integration
-│   └── agent.js         # Genkit AI agent with tool definitions
+│   ├── search.ts        # Tavily search integration
+│   └── agent.ts         # Genkit AI agent with tool definitions
+├── dist/                # Compiled JavaScript output (generated)
+├── tsconfig.json        # TypeScript configuration
 ├── package.json
 ├── .env                 # Environment variables (create this)
 └── README.md
@@ -135,8 +149,13 @@ in multiple states simultaneously...
 **Module not found errors**
 - Run `npm install` to install all dependencies
 
+**TypeScript compilation errors**
+- Run `npm run build` to check for type errors
+- Check `tsconfig.json` settings if needed
+
 ## Technologies Used
 
+- [TypeScript](https://www.typescriptlang.org/) - Typed superset of JavaScript
 - [Node.js](https://nodejs.org/) - JavaScript runtime
 - [Google Genkit](https://firebase.google.com/docs/genkit) - AI framework for building AI-powered apps with tool-calling capabilities
 - [Gemini 3 Pro](https://ai.google.dev/) - Google's advanced AI model
@@ -145,6 +164,7 @@ in multiple states simultaneously...
 - [Ora](https://github.com/sindresorhus/ora) - Terminal spinners
 - [dotenv](https://github.com/motdotla/dotenv) - Environment variable management
 - [Zod](https://github.com/colinhacks/zod) - Schema validation for tool definitions
+- [tsx](https://github.com/privatenumber/tsx) - TypeScript execution for development
 
 ## License
 
